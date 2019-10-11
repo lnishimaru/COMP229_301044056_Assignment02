@@ -39,7 +39,20 @@ namespace COMP229_301044056_Assignment02.Controllers
                 System.Diagnostics.Debug.WriteLine(r.Name);
             }
             return View("Index");
-        } 
+        }
+
+        public ViewResult DataPage()
+        {
+            return View();
+        }
+        public ViewResult DisplayPage()
+        {
+            return View();
+        }
+        public ViewResult UserPage()
+        {
+            return View();
+        }
     }
 
 }
