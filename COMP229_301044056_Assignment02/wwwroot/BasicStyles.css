@@ -1,0 +1,154 @@
+﻿#allPage {
+    width: 980px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+header {
+    font-size: 30pt;
+    color: white;
+    width: 980px;
+    height: 100px;
+    background-color: #6A0000;
+    padding: 10px;
+}
+
+    header a {
+        color: white;
+        text-decoration: none;
+    }
+
+        header a:hover {
+            font-weight: bold;
+        }
+
+#little {
+    font-family: 'Ink Free';
+    font-size: 26pt;
+    float: left;
+    line-height: 100px;
+    vertical-align: middle;
+    padding-left: 15px;
+}
+
+#saucepot {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 28pt;
+    float: left;
+    line-height: 100px;
+    vertical-align: middle;
+}
+
+#logo {
+    float: left;
+}
+
+#navBar {
+    font-size: 14pt;
+    color: white;
+    text-align: right;
+    line-height: 140px;
+    vertical-align: bottom;
+}
+
+#mainDiv {
+    padding: 10px;
+    background-color: white;
+    font-size: 20pt;
+    width: 980px;
+    height: 480px;
+}
+
+footer {
+    font-size: small;
+    color: dimgrey;
+    width: 980px;
+    height: 100px;
+    background-color: lightgray;
+    padding: 10px;
+}
+
+.specials {
+    float: right;
+    width: 320px;
+    text-align: center;
+}
+
+.slides {
+    width: 300px;
+    height: 190px;
+    top: 140px;
+}
+
+/* main content */
+.photoIndex {
+    background: white;
+    width: 100%;
+    margin: 0;
+}
+
+.previous, .next {
+    color: white;
+    height: 190px;
+    width: 40px;
+    vertical-align: middle;
+}
+
+#fig0 {
+    float: left;
+    width: 30%;
+}
+
+#fig1 {
+    width: 30%;
+    float: left;
+    overflow: hidden;
+}
+
+#fig2 {
+    width: 30%;
+    float: left;
+    overflow: hidden;
+}
+
+.previous {
+    height: 190px;
+    float: left;
+    width: 40px;
+    background-color: lightgray;
+    display: flex;
+    transition: all 0.2s ease-in-out;
+}
+
+.next {
+    height: 190px;
+    width: 40px;
+    background-color: lightgray;
+    float: left;
+    display: flex;
+    transition: all 0.2s ease-in-out;
+}
+
+.previous:hover {
+    background-color: #7d96b2;
+}
+
+.next:hover {
+    background-color: #7d96b2;
+}
+
+.arrowPrevious {
+    width: 100%;
+    align-self: center;
+    transform: rotate(180deg);
+}
+
+.arrowNext {
+    width: 100%;
+    align-self: center;
+}
+
+#temporary {
+    text-align: center;
+    width: 100%;
+}

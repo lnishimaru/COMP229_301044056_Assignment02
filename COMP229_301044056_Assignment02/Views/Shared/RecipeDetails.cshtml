@@ -1,0 +1,11 @@
+﻿@model IEnumerable<COMP229_301044056_Assignment02.Models.Recipe>
+<div>
+    Partial view
+    @foreach (Recipe p in COMP229_301044056_Assignment02.Models.FakeRepository.Recipes)
+    {
+        @p.Name
+        @p.Category
+    }
+
+</div>
+

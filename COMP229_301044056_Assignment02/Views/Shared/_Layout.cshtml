@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Little Saucepot</title>
+    <link rel="stylesheet" href="~/BasicStyles.css" />
+</head>
+<body>
+    <div id="allPage">
+        <header>
+            <div id="logo"><img src="@Url.Content("~/logo.png")" alt="Logo" /></div>
+            <div id="little">Little </div><div id="saucepot">&nbsp;Saucepot</div>
+            <p id="navBar">@Html.ActionLink("Home", "Index") / @Html.ActionLink("Categories", "DisplayPage") / @Html.ActionLink("Search", "InsertPage") / @Html.ActionLink("Recipes", "DataPage") / @Html.ActionLink("Contact Us", "UserPage")</p>
+        </header>
+        <div id="mainDiv">
+            @RenderBody()
+        </div>
+        <footer>
+            <p>&copy;&nbsp;Lilian Nishimaru de Souza - COMP229 - Fall 2019</p>
+        </footer>
+    </div>
+</body>
+</html>

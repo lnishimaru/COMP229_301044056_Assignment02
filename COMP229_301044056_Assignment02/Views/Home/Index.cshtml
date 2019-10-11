@@ -1,0 +1,7 @@
+﻿@model IEnumerable<COMP229_301044056_Assignment02.Models.Recipe>
+@foreach (Recipe p in COMP229_301044056_Assignment02.Models.FakeRepository.Recipes)
+{
+    <div>
+        <h3>@p.Name</h3>
+    </div>
+}
