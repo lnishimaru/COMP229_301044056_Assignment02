@@ -16,27 +16,19 @@ namespace COMP229_301044056_Assignment02.Controllers
             {
                 System.Diagnostics.Debug.WriteLine(r.Name);
             }
-            //return View(FakeRepository.Recipes); 
             return View();
         }
        [HttpGet]
         public ViewResult InsertPage(Recipe recipe)
         {
-            recipe.ID = 1001;
-            recipe.Category = "Test";
-            recipe.Ingredients = "Heavy cream, Unflavored gelatin, Milk , White Sugar, Vanilla extract";
-            System.Diagnostics.Debug.WriteLine("Second Step");
             return View();
         }
         [HttpPost]
         public ViewResult AddRecipe(Recipe recipe)
         {
-            System.Diagnostics.Debug.WriteLine("1.Saving  recipe?");
-            System.Diagnostics.Debug.WriteLine(recipe.Name);
-            FakeRepository.AddItem(recipe);
-            foreach(Recipe r in FakeRepository.Recipes)
+            if (recipe.Name != null)
             {
-                System.Diagnostics.Debug.WriteLine(r.Name);
+                FakeRepository.AddItem(recipe);
             }
             return View("Index");
         }
@@ -45,9 +37,19 @@ namespace COMP229_301044056_Assignment02.Controllers
         {
             return View();
         }
-        public ViewResult DisplayPage()
+        /*public ViewResult DisplayPage(int ID)
         {
-            return View();
+            System.Diagnostics.Debug.WriteLine("teste!!!!");
+            System.Diagnostics.Debug.WriteLine(ID);
+            return View(FakeRepository.Recipes);
+        }*/
+
+        public ActionResult DisplayPage(int ID)
+        {
+            System.Diagnostics.Debug.WriteLine("teste!!!!");
+            System.Diagnostics.Debug.WriteLine(ID);
+            ViewBag.RecipeID = ID;
+            return View(FakeRepository.Recipes);
         }
         public ViewResult UserPage()
         {

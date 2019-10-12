@@ -1,0 +1,32 @@
+﻿@model Recipe
+
+<form id="form1" asp-action="AddRecipe"
+      asp-controller="Home" method="post">
+    <div class="form-group">
+        <label asp-for="Name" style="width:50%; float:left">Recipe:</label>
+        <input class="form-control" asp-for="Name" style="width:50%; float:left" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Category" style="width:50%; float:left">Category:</label>
+        <input class="form-control" asp-for="Category" style="width:50%; float:left" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Cuisine" style="width:50%; float:left">Cuisine:</label>
+        <input class="form-control" asp-for="Cuisine" style="width:50%; float:left" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Ingredients"style="width:50%; float:left">Ingredients:</label>
+        <input class="form-control" asp-for="Ingredients" style="width:50%; float:left" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Instructions" style="width:50%; float:left">Instructions:</label>
+        <input class="form-control" asp-for="Instructions" style="width:50%; float:left" />
+    </div>
+
+        <button type="submit" style="float:left">
+            Save
+        </button>
+        <button type="button" style="float:left" onclick="location.href='@Url.Action("")'">
+            Cancel
+        </button>
+</form>

@@ -4,5 +4,10 @@
     Layout = "_Layout";
 }
 
-<h2>DataPage</h2>
-@await Html.PartialAsync("RecipeDetails", Model)
+<h2>Recipes List</h2>
+<div>
+    @foreach (Recipe p in COMP229_301044056_Assignment02.Models.FakeRepository.Recipes)
+    {
+        <div>@Html.ActionLink(@p.Name , "DisplayPage",new { Id = p.ID })</div>
+    }
+</div>
