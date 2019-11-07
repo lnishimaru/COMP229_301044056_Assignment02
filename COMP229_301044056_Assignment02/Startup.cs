@@ -6,15 +6,23 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Configuration;
+using Microsoft.EntityFrameworkCore;
+using COMP229_301044056_Assignment02.Models;
 
 namespace COMP229_301044056_Assignment02
 {
     public class Startup
     {
-        // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
+        public Startup(IConfiguration configuration) => Configuration = configuration;
+        public IConfiguration Configuration { get; }
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<ApplicationDbContext>(options => 
+                    options.UseSqlServer(Configuration["Data:LittleSaucePotIngredients:ConnectionString"]));
+            services.AddTransient<IIngredientRepository, EFIngredientRepository>();
+            services.AddTransient<IRecipeRepository, EFRecipeRepository>();
+            services.AddTransient<IIngredientLineRepository, EFIngredientLineRepository>();
             services.AddMvc();
         }
 
@@ -30,6 +38,7 @@ namespace COMP229_301044056_Assignment02
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+            SeedData.EnsurePopulated(app);
         }
     }
 }

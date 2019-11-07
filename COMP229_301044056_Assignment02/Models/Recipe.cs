@@ -11,7 +11,7 @@ namespace COMP229_301044056_Assignment02.Models
         public string Name { get; set; }
         public string Category { get; set; }
         public string Cuisine { get; set; }
-        public string Ingredients { get; set; }
         public string Instructions { get; set; }
+        public ICollection<IngredientLine> Lines { get; set; }
     }
 }

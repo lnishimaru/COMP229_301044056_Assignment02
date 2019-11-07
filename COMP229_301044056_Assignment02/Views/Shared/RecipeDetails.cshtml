@@ -2,18 +2,18 @@
     <div>
         <img src="~/AutumnSoup.jpg" style="float:right" />
     </div>
-<div>
-    @foreach (Recipe p in COMP229_301044056_Assignment02.Models.FakeRepository.Recipes)
-    {
-        if (p.ID == ViewBag.RecipeID)
+    <div>
+        @foreach (Recipe p in Model)
         {
+
             <h2>@p.Name</h2>
             <p>Category: @p.Category</p>
             <p>Cuisine: @p.Cuisine</p>
-            <p>Ingredients: @p.Ingredients</p>
+            <p>Ingredients: </p>
             <p>Instructions: @p.Instructions</p>
+            @await Component.InvokeAsync("Ingredients",p.ID)
+
         }
-    }
-</div>
+    </div>
 
 

@@ -1,0 +1,10 @@
+﻿@model IEnumerable<COMP229_301044056_Assignment02.Models.Recipe>
+
+@foreach (Recipe x in Model)
+{
+    <p>@x.Name</p>
+    @foreach (IngredientLine i in x.Lines)
+    {
+        <p>@i.RecipeID: @i.IngredientID - @i.Quantity </p>
+    }
+}

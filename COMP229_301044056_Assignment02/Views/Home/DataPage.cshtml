@@ -1,4 +1,4 @@
-﻿@model Recipe
+﻿@model IEnumerable<COMP229_301044056_Assignment02.Models.Recipe>
 @{
     ViewBag.Title = "Recipes";
     Layout = "_Layout";
@@ -6,7 +6,7 @@
 
 <h2>Recipes List</h2>
 <div>
-    @foreach (Recipe p in COMP229_301044056_Assignment02.Models.FakeRepository.Recipes)
+    @foreach (Recipe p in Model)
     {
         <div>@Html.ActionLink(@p.Name , "DisplayPage",new { Id = p.ID })</div>
     }

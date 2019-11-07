@@ -1,8 +1,17 @@
-﻿@model Recipe
+﻿@model IEnumerable<COMP229_301044056_Assignment02.Models.Recipe>
 @{
     ViewBag.Title = "Recipes";
     Layout = "_Layout";
 }
 
 <h2>UserPage</h2>
+
+@foreach (Recipe l in Model)
+{
+    @foreach (IngredientLine x in l.Lines)
+    {
+        <p>@x.IngredientID</p>
+    }
+
+}
 
