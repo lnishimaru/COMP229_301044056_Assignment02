@@ -1,19 +1,18 @@
-﻿@model IEnumerable<COMP229_301044056_Assignment02.Models.Recipe>
-    <div>
-        <img src="~/AutumnSoup.jpg" style="float:right" />
-    </div>
-    <div>
-        @foreach (Recipe p in Model)
-        {
+﻿@model TestViewModel
 
-            <h2>@p.Name</h2>
-            <p>Category: @p.Category</p>
-            <p>Cuisine: @p.Cuisine</p>
-            <p>Ingredients: </p>
-            <p>Instructions: @p.Instructions</p>
-            @await Component.InvokeAsync("Ingredients",p.ID)
-
-        }
-    </div>
+<div>
+    <img src="~/AutumnSoup.jpg" style="float:right" />
+</div>
+<div>
+    <h2>@Model.Name</h2>
+    <p>Category: @Model.Category</p>
+    <p>Cuisine: @Model.Cuisine</p>
+    <p>Ingredients:</p>
+    @foreach (IngredientLineDetail x in Model.Line)
+    {
+        <p style="font-size:small">@x.Ingredient.IngredientName - @x.Quantity @x.Measure.MeasureDesc </p>
+    }
+    <p>Instructions: @Model.Instructions</p>
+</div>
 
 

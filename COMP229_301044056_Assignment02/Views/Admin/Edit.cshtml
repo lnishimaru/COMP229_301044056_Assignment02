@@ -1,8 +1,11 @@
 ﻿@model Recipe
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "_AdminLayout";
+}
 
-<form id="form1" asp-action="AddRecipe"
-      asp-controller="Home" method="post">
-
+<h2>Edit</h2>
+<form asp-action="Edit" method="post">
     <div class="form-group">
         <label asp-for="Name" style="width:50%; float:left">Recipe:</label>
         <input class="form-control" asp-for="Name" style="width:50%; float:left" />
@@ -20,33 +23,8 @@
         <input class="form-control" asp-for="Instructions" style="width:50%; float:left" />
     </div>
     <input type="hidden" asp-for="ID" />
-
-    <div style="margin-top: 1%;">
-        <button id="btnAddAnswer" type="button" class="btn btn-primary" style="margin-left: 4px; margin-bottom: 10px; width: 7%">Add Ingredient</button>
+    <div class="text-center">
+        <button class="btn btn-primary" type="submit">Save</button>
+        <a asp-action="Index" class="btn btn-secondary">Cancel</a>
     </div>
-
-    <button type="submit" style="float:left">
-        Save
-    </button>
-    <button type="button" style="float:left" onclick="location.href='@Url.Action("")'">
-        Cancel
-    </button>
-
-
 </form>
-<script>
-
-    $("#btnAddAnswer").on("click", function() {
-        var myData = $('#frmQandA').serialize();
-
-        $.ajax({
-            type: "POST",
-            url: "@Url.Action("AddAnswer", "Test")",
-            data: myData,
-        contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-        success: function (data) {
-            $("#divAnswers").html(data);
-        }
-    })});
-
-</script>
