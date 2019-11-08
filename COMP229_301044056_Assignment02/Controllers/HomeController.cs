@@ -10,7 +10,7 @@ namespace COMP229_301044056_Assignment02.Controllers
 {
     public class HomeController : Controller
     {
-        private IIngredientRepository repository;
+        private readonly IIngredientRepository repository;
         private IRecipeRepository recipeRepo;
         private IIngredientLineRepository lineRepo;
 
@@ -20,21 +20,59 @@ namespace COMP229_301044056_Assignment02.Controllers
             recipeRepo = repoRecipe;
             lineRepo = repoLine;
         }
-
-        /* public ViewResult Ingredients()
-         {
-             return View(new TestViewModel
-             {
-                 Recipe = Recipe
-             });
-             public ViewResult Ingredients() =>
-                View(recipeRepo.Recipes.Where(o => o.ID == 1));
-         } */
         public ViewResult Ingredients()
         {
-            return View(recipeRepo.Recipes.Where(o => o.ID == 1));
-        }
+            TestViewModel test2 = new TestViewModel();
+            test2.Line = new List<IngredientLineDetail>();
 
+            var query = from p in recipeRepo.Recipes
+                        where p.ID == 1
+                        orderby p.ID
+                        select p;
+
+            foreach (var recipe in query)
+            {
+                test2.Name = recipe.Name;
+                test2.Instructions = recipe.Instructions;
+                test2.ID = recipe.ID;
+                test2.Category = recipe.Category;
+                test2.Cuisine = recipe.Cuisine;
+                
+                
+                    System.Diagnostics.Debug.WriteLine(recipe.Name);
+                var query2 = from q in lineRepo.Lines
+                             where q.RecipeID == recipe.ID
+                             orderby q.IngredientLineID
+                             select q;
+
+                foreach (var line in query2)
+                {     
+                    System.Diagnostics.Debug.WriteLine(line.IngredientID);
+
+                    var query3 = from r in repository.Ingredients
+                                 where r.IngredientID == line.IngredientID
+                                 select r;
+    
+                    foreach (var m in query3)
+                    {
+                        System.Diagnostics.Debug.WriteLine(m.IngredientName);
+                        test2.Line.Add(new IngredientLineDetail
+                        {
+                            IngredientLineID = line.IngredientLineID,
+                            Quantity = line.Quantity,
+                            RecipeID = line.RecipeID,
+                            Ingredient = new Ingredient
+                            {
+                                IngredientID = line.IngredientID,
+                                IngredientName = m.IngredientName
+                            }
+                        });
+                    }
+                }   
+            }
+
+            return View(test2);
+        }
         public ViewResult DisplayPage() =>
             View(recipeRepo.Recipes.Where(o => o.ID == 1));
         public ViewResult Index()

@@ -22,11 +22,11 @@ namespace COMP229_301044056_Assignment02.Components
 
             return View(new TestViewModel
             {
-                RecipeIngredients = ingrLine.Lines
+                /* Line = ingrLine.Lines
                     .Where(p => p.RecipeID == recipeID)
                     .OrderBy(p => p.RecipeID).ToList()
-                ,
-                CurrentRecipeID = recipeID
+                , */
+                ID = recipeID
             });
         }
     }

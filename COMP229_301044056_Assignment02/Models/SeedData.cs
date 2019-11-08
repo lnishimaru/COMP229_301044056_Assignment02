@@ -19,10 +19,7 @@ namespace COMP229_301044056_Assignment02.Models
            if (!context.Ingredients.Any())
             {
                 context.Ingredients.AddRange(
-                new Ingredient
-                {
-                    IngredientName = "Egg(s)"
-                },
+                
                 new Ingredient
                 {
                     IngredientName = "Milk"
@@ -44,34 +41,6 @@ namespace COMP229_301044056_Assignment02.Models
                 }, new Ingredient
                 {
                     IngredientName = "Onion"
-                },
-                new Ingredient
-                {
-                    IngredientName = "Butternut Squash"
-                },
-                new Ingredient
-                {
-                    IngredientName = "Vegetable broth"
-                },
-                new Ingredient
-                {
-                    IngredientName = "Vegetable oil"
-                },
-                new Ingredient
-                {
-                    IngredientName = "Curry Powder"
-                },
-                new Ingredient
-                {
-                    IngredientName = "Honeycrisp Apple"
-                },
-                new Ingredient
-                {
-                    IngredientName = "Almond Milk"
-                },
-                new Ingredient
-                {
-                    IngredientName = "Cinnamon"
                 }
                 );
                 context.SaveChanges();
@@ -100,43 +69,37 @@ namespace COMP229_301044056_Assignment02.Models
                     },
                     new IngredientLine
                     {
-                        IngredientID = 9,
+                        IngredientID = 2,
                         Quantity = 1,
                         RecipeID = 1
                     },
                     new IngredientLine
                     {
-                        IngredientID = 10,
+                        IngredientID =3,
                         Quantity = 1,
                         RecipeID = 1
                     },
                     new IngredientLine
                     {
-                        IngredientID = 11,
+                        IngredientID = 5,
                         Quantity = 1,
                         RecipeID = 1
                     },
                     new IngredientLine
                     {
-                        IngredientID = 12,
+                        IngredientID = 6,
                         Quantity = 1,
                         RecipeID = 1
                     },
                     new IngredientLine
                     {
-                        IngredientID = 13,
+                        IngredientID = 7,
                         Quantity = 1,
                         RecipeID = 1
                     },
                     new IngredientLine
                     {
-                        IngredientID = 14,
-                        Quantity = 1,
-                        RecipeID = 1
-                    },
-                    new IngredientLine
-                    {
-                        IngredientID = 15,
+                        IngredientID = 8,
                         Quantity = 1,
                         RecipeID = 1
                     }

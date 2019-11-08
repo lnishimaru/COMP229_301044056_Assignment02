@@ -18,7 +18,6 @@ namespace COMP229_301044056_Assignment02.Models
             {
                 lineCollection.Add(new IngredientLine
                 {
-                    IngredientID = ingredient.IngredientID,
                     Quantity = quantity
                 });
             }

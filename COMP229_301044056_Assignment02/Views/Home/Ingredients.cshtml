@@ -1,10 +1,12 @@
-﻿@model IEnumerable<COMP229_301044056_Assignment02.Models.Recipe>
+﻿@model TestViewModel
 
-@foreach (Recipe x in Model)
+<p>@Model.Name</p>
+<p>@Model.Category - @Model.Cuisine</p>
+<p>Ingredients:</p>
+@foreach (IngredientLineDetail x in Model.Line)
 {
-    <p>@x.Name</p>
-    @foreach (IngredientLine i in x.Lines)
-    {
-        <p>@i.RecipeID: @i.IngredientID - @i.Quantity </p>
-    }
+    <p style="font-size:small">@x.Ingredient.IngredientName - @x.Quantity </p>
 }
+
+<p>Instructions:</p>
+<p>@Model.Instructions</p>
