@@ -10,6 +10,7 @@ namespace COMP229_301044056_Assignment02.Models
         public int IngredientLineID { get; set; }
         public Ingredient Ingredient { get; set; }
         public int Quantity { get; set; }
+        public Measure Measure { get; set; }
         public int RecipeID { get; set; }
     }
 }

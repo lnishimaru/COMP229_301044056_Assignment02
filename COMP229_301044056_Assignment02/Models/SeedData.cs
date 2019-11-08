@@ -16,7 +16,54 @@ namespace COMP229_301044056_Assignment02.Models
             ApplicationDbContext context = app.ApplicationServices
             .GetRequiredService<ApplicationDbContext>();
             context.Database.Migrate();
-           if (!context.Ingredients.Any())
+            if (!context.Measures.Any())
+            {
+                context.Measures.AddRange(
+
+                new Measure
+                {
+                    MeasureDesc = "cup"
+                }, 
+                new Measure
+                {
+                    MeasureDesc = "tablespoon"
+                }, 
+                new Measure
+                {
+                    MeasureDesc = "teaspoon"
+                },
+                new Measure
+                {
+                    MeasureDesc = "pinch"
+                },
+                new Measure
+                {
+                    MeasureDesc = "gr"
+                },
+                new Measure
+                {
+                    MeasureDesc = "kg"
+                },
+                new Measure
+                {
+                    MeasureDesc = "unit"
+                },
+                new Measure
+                {
+                    MeasureDesc = "package"
+                },
+                new Measure
+                {
+                    MeasureDesc = "litre"
+                },
+                new Measure
+                {
+                    MeasureDesc = "to taste"
+                }
+                );
+                context.SaveChanges();
+            }
+            if (!context.Ingredients.Any())
             {
                 context.Ingredients.AddRange(
                 
@@ -65,47 +112,54 @@ namespace COMP229_301044056_Assignment02.Models
                     {
                         IngredientID = 1,
                         Quantity = 2,
+                        MeasureID = 7,
                         RecipeID = 1
                     },
                     new IngredientLine
                     {
                         IngredientID = 2,
                         Quantity = 1,
+                        MeasureID = 7,
                         RecipeID = 1
                     },
                     new IngredientLine
                     {
                         IngredientID =3,
                         Quantity = 1,
+                        MeasureID = 2,
                         RecipeID = 1
                     },
                     new IngredientLine
                     {
                         IngredientID = 5,
                         Quantity = 1,
+                        MeasureID = 3,
                         RecipeID = 1
                     },
                     new IngredientLine
                     {
                         IngredientID = 6,
                         Quantity = 1,
+                        MeasureID = 8,
                         RecipeID = 1
                     },
                     new IngredientLine
                     {
                         IngredientID = 7,
                         Quantity = 1,
+                        MeasureID = 5,
                         RecipeID = 1
                     },
                     new IngredientLine
                     {
                         IngredientID = 8,
                         Quantity = 1,
+                        MeasureID = 1,
                         RecipeID = 1
                     }
                 );
                 context.SaveChanges();
-            }
+            } 
         }
     }
 }

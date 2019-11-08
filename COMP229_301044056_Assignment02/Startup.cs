@@ -23,6 +23,7 @@ namespace COMP229_301044056_Assignment02
             services.AddTransient<IIngredientRepository, EFIngredientRepository>();
             services.AddTransient<IRecipeRepository, EFRecipeRepository>();
             services.AddTransient<IIngredientLineRepository, EFIngredientLineRepository>();
+            services.AddTransient<IMeasureRepository, EFMeasuresRepository>();
             services.AddMvc();
         }
 

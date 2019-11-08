@@ -1,11 +1,10 @@
 ﻿@model TestViewModel
 
-<p>@Model.Name</p>
-<p>@Model.Category - @Model.Cuisine</p>
+<p>@Model.Name - @Model.Category - @Model.Cuisine</p>
 <p>Ingredients:</p>
 @foreach (IngredientLineDetail x in Model.Line)
 {
-    <p style="font-size:small">@x.Ingredient.IngredientName - @x.Quantity </p>
+    <p style="font-size:small">@x.Ingredient.IngredientName - @x.Quantity @x.Measure.MeasureDesc </p>
 }
 
 <p>Instructions:</p>

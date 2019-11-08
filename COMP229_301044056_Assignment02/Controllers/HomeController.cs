@@ -13,17 +13,20 @@ namespace COMP229_301044056_Assignment02.Controllers
         private readonly IIngredientRepository repository;
         private IRecipeRepository recipeRepo;
         private IIngredientLineRepository lineRepo;
+        private IMeasureRepository measureRepo;
 
-        public HomeController(IIngredientRepository repoService, IRecipeRepository repoRecipe, IIngredientLineRepository repoLine)
+        public HomeController(IIngredientRepository repoService, IRecipeRepository repoRecipe, IIngredientLineRepository repoLine, IMeasureRepository repoMeasure)
         {
             repository = repoService;
             recipeRepo = repoRecipe;
             lineRepo = repoLine;
+            measureRepo = repoMeasure;
         }
         public ViewResult Ingredients()
         {
             TestViewModel test2 = new TestViewModel();
             test2.Line = new List<IngredientLineDetail>();
+            Measure test4 = new Measure();
 
             var query = from p in recipeRepo.Recipes
                         where p.ID == 1
@@ -48,11 +51,19 @@ namespace COMP229_301044056_Assignment02.Controllers
                 foreach (var line in query2)
                 {     
                     System.Diagnostics.Debug.WriteLine(line.IngredientID);
+                    var query4 = from s in measureRepo.Measures
+                                 where s.MeasureID == line.MeasureID
+                                 select s;
 
+                    foreach (var o in query4)
+                    {
+                        System.Diagnostics.Debug.WriteLine(o.MeasureDesc);
+                        test4 = new Measure { MeasureID = o.MeasureID, MeasureDesc = o.MeasureDesc };
+                    }
                     var query3 = from r in repository.Ingredients
                                  where r.IngredientID == line.IngredientID
                                  select r;
-    
+                    
                     foreach (var m in query3)
                     {
                         System.Diagnostics.Debug.WriteLine(m.IngredientName);
@@ -60,6 +71,7 @@ namespace COMP229_301044056_Assignment02.Controllers
                         {
                             IngredientLineID = line.IngredientLineID,
                             Quantity = line.Quantity,
+                            Measure =  new Measure { MeasureID = test4.MeasureID, MeasureDesc = test4.MeasureDesc },
                             RecipeID = line.RecipeID,
                             Ingredient = new Ingredient
                             {
