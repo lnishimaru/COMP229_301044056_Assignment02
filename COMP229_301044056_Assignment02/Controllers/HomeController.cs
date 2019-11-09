@@ -22,6 +22,51 @@ namespace COMP229_301044056_Assignment02.Controllers
             lineRepo = repoLine;
             measureRepo = repoMeasure;
         }
+        public int FindIngredient(string ingredientName)
+        {
+            var query1 = from a in repository.Ingredients
+                         where a.IngredientName == ingredientName
+                         orderby a.IngredientName
+                         select a.IngredientID;
+
+            int result = query1.FirstOrDefault();
+
+            if (result == 0)
+            {
+                repository.SaveIngredient(new Ingredient { IngredientName = ingredientName });
+                var query3 = from a in repository.Ingredients
+                             where a.IngredientName == ingredientName
+                             orderby a.IngredientName
+                             select a.IngredientID;
+
+                result = query3.FirstOrDefault();
+            }
+
+            return result;
+        }
+        public int FindMeasure(string measureDesc)
+        {
+            var query2 = from b in measureRepo.Measures
+                         where b.MeasureDesc == measureDesc
+                         orderby b.MeasureDesc
+                         select b.MeasureID;
+
+            int result = query2.FirstOrDefault();
+
+            if (result == 0)
+            {
+                System.Diagnostics.Debug.WriteLine("Insert Measure");
+                measureRepo.SaveMeasure(new Measure { MeasureDesc = measureDesc });
+                var query3 = from b in measureRepo.Measures
+                             where b.MeasureDesc == measureDesc
+                             orderby b.MeasureDesc
+                             select b.MeasureID;
+
+                result = query3.FirstOrDefault();
+            }
+
+            return result;
+        }
         public ViewResult Ingredients()
         {
             TestViewModel test2 = new TestViewModel();
@@ -42,7 +87,8 @@ namespace COMP229_301044056_Assignment02.Controllers
                 test2.Cuisine = recipe.Cuisine;
                 
                 
-                    System.Diagnostics.Debug.WriteLine(recipe.Name);
+                System.Diagnostics.Debug.WriteLine(recipe.Name);
+
                 var query2 = from q in lineRepo.Lines
                              where q.RecipeID == recipe.ID
                              orderby q.IngredientLineID
@@ -151,29 +197,43 @@ namespace COMP229_301044056_Assignment02.Controllers
         {
             return View();
         }
-        public ViewResult InsertPage() =>
-            View();
 
-        [HttpPost]
-        public IActionResult InsertPage(Recipe recipe)
+        [HttpGet]
+        public ActionResult InsertPage()
         {
-            if (ModelState.IsValid)
-            {
-                recipeRepo.SaveRecipe(recipe);
-                TempData["message"] = $"{recipe.Name} has been saved";
-                return View();
-            }
-            else
-            {
-                return View(recipe);
-            }
+            InsertPageViewModel model = new InsertPageViewModel();
+            model.RecipeVM = new Recipe();
+            model.CollectLine = new List<IngredientLineDetail>() { };
+            model.Line = new IngredientLine();
+            model.Ingredient = new List<Ingredient>();
+            model.Measure = new List<Measure>();
+            return View(model);
         }
         [HttpPost]
-        public ViewResult AddRecipe(Recipe recipe)
-        {
-            recipeRepo.SaveRecipe(recipe);
-            TempData["message"] = $"{recipe.Name} has been saved";
-            return View();           
+        public IActionResult InsertPage(InsertPageViewModel recipe)
+        {   
+            foreach (Measure m in recipe.Measure)
+            {
+                System.Diagnostics.Debug.WriteLine(m.MeasureDesc);
+            }
+            foreach(IngredientLineDetail x in recipe.CollectLine)
+            {
+                System.Diagnostics.Debug.WriteLine(x.Ingredient.IngredientName);
+                int ingrID = FindIngredient(x.Ingredient.IngredientName);
+                recipe.Line.IngredientID = ingrID;
+                recipe.Line.Quantity = x.Quantity;
+                //int measID = FindMeasure(x.Measure.MeasureDesc);
+                //recipe.Line.MeasureID = measID;
+                recipe.RecipeVM.Lines.Add(recipe.Line);
+            }
+
+            System.Diagnostics.Debug.WriteLine("Insert Recipe");
+            System.Diagnostics.Debug.WriteLine(recipe.RecipeVM.Name);
+            System.Diagnostics.Debug.WriteLine(recipe.Line.Quantity);
+
+            recipeRepo.SaveRecipe(recipe.RecipeVM);
+                TempData["message"] = $"{recipe.RecipeVM.Name} has been saved";
+                return View();           
         }
         public ViewResult DataPage() =>
             View(recipeRepo.Recipes.Where(o => o.ID > 0));

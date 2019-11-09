@@ -5,13 +5,16 @@
     <meta name="viewport" content="width=device-width" />
     <title>Little Saucepot</title>
     <link rel="stylesheet" href="~/BasicStyles.css" />
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    @RenderSection("JavaScript", required: false)
+
 </head>
 <body>
     <div id="allPage">
         <header>
             <div id="logo"><img src="@Url.Content("~/logo.png")" alt="Logo" /></div>
             <div id="little">Little </div><div id="saucepot">&nbsp;Saucepot</div>
-                                          <p id="navBar">@Html.ActionLink("Home", "Index") / @Html.ActionLink("Insert", "InsertPage") /  @Html.ActionLink("Recipes List ", "DataPage") / @Html.ActionLink("Details", "DisplayPage") / @Html.ActionLink("Contact Us", "UserPage") / @Html.ActionLink("Ingredients", "Ingredients")</p>
+            <p id="navBar">@Html.ActionLink("Home", "Index") / @Html.ActionLink("Insert", "InsertPage") /  @Html.ActionLink("Recipes List ", "DataPage") / @Html.ActionLink("Details", "DisplayPage") / @Html.ActionLink("Contact Us", "UserPage") / @Html.ActionLink("Ingredients", "Ingredients")</p>
         </header>
         <div id="mainDiv">
             @RenderBody()
@@ -20,5 +23,31 @@
             <p>&copy;&nbsp;Lilian Nishimaru de Souza - COMP229 - Fall 2019</p>
         </footer>
     </div>
+    <script type="text/javascript">
+        $("#AddIngredient").click(function (e) {          
+            e.preventDefault();
+            var i = $("#test").length;
+            var n = '<label asp-for="CollectLine[' + i + '].Ingredient.IngredientName" style="font-size: small">Ingredient:</label>';
+            $("#test").append(n);
+            var n = '<input type="text" class="lines" name="Ingredient[' + i + '].IngredientName"   style="font-size: small"/>';
+            $("#test").append(n);
+            var n = '<input type="hidden" asp-for="Ingredient[' + i + '].IngredientID"  style="font-size: small"/>';
+            $("#test").append(n);
+            var n = '<label asp-for="CollectLine[' + i + '].Quantity"  style="font-size: small">Quantity:</label>';
+            $("#test").append(n);
+            var n = '<input class="lines" asp-for="CollectLine[' + i + '].Quantity"  style="font-size: small" />';
+            $("#test").append(n);
+            var n = '<label asp-for="Measure[' + i + '].MeasureDesc"  style="font-size: small">Measure:</label>'; 
+            $("#test").append(n);
+            var n = '<input class="lines" asp-for="Measure[' + i + '].MeasureDesc" style="font-size: small" />';
+            $("#test").append(n);
+            var n = '<input type="hidden" asp-for="Measure[' + i + '].MeasureID"  style="font-size: small"/>';
+            $("#test").append(n);
+            var n = '<input type="hidden" asp-for="CollectLine[' + i + '].IngredientLineID"  style="font-size: small"/>';
+            $("#test").append(n);
+            var n = '<input type="hidden" asp-for="CollectLine[' + i + '].RecipeID"  style="font-size: small"/>';
+            $("#test").append(n);
+        });
+    </script>
 </body>
 </html>

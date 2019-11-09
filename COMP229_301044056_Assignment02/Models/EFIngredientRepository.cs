@@ -16,5 +16,15 @@ namespace COMP229_301044056_Assignment02.Models
         }
 
         public IQueryable<Ingredient> Ingredients => context.Ingredients;
+        public void SaveIngredient(Ingredient ingredient)
+        {
+            System.Diagnostics.Debug.WriteLine("Save Ingredient");
+
+            if (ingredient.IngredientID == 0)
+            {
+                context.Ingredients.Add(ingredient);
+            }
+            context.SaveChanges();
+        }
     }
 }
