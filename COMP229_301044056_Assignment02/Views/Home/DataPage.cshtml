@@ -11,7 +11,7 @@
         <div>@Html.ActionLink(@p.Name , "DisplayPage","Home",new { recipeID = p.ID })
             <form asp-action="Delete" method="post">
                 <a asp-action="Edit" class="btn btn-sm btn-warning"
-                   asp-route-productId="@p.ID">
+                   asp-route-ID="@p.ID">
                     Edit
                 </a>
                 <input type="hidden" name="ID" value="@p.ID" />
